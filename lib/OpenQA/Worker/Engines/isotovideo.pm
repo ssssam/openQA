@@ -512,6 +512,7 @@ sub _engine_workit_step_2 ($job, $job_settings, $vars, $shared_cache, $callback)
 }
 
 sub locate_local_assets ($vars, $assetkeys, $pooldir) {
+    log_info("locate_local_assets. assetkeys: %assetkeys  pooldir: $pooldir");
     for my $key (keys %$assetkeys) {
         my $file = locate_asset($assetkeys->{$key}, $vars->{$key}, mustexist => 1);
         unless ($file) {

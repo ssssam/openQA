@@ -412,8 +412,11 @@ sub _relative_or_absolute {
 # relative => 1 - return path below assetdir, otherwise absolute path
 sub locate_asset {
     my ($type, $name, %args) = @_;
+    log_info("locate_asset. type: $type  name: $name  args: %args");
 
     my $trans = catfile($type, $name);
+    my $the_path = _relative_or_absolute($trans, $args{relative});
+    log_info("checking: $the_path");
     return _relative_or_absolute($trans, $args{relative}) if -e _relative_or_absolute($trans);
 
     my $fixed = catfile($type, 'fixed', $name);
